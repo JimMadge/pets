@@ -1,0 +1,10 @@
+---
+
+- name: Install pacman hooks
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/pacmand.d/hooks/
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob: "files/arch/etc/pacman.d/hooks/*.hook"

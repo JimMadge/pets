@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = *
+
+[Action]
+Depends = pacman-contrib
+Description = Removing old packages from cache...
+When = PostTransaction
+Exec = /usr/bin/paccache -rk 2
