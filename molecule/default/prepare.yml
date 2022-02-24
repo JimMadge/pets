@@ -1,0 +1,6 @@
+---
+- name: Prepare
+  hosts: all
+
+  tasks:
+    - include_tasks: ../../tasks/update_package_cache.yaml

@@ -3,8 +3,7 @@
   hosts: all
 
   tasks:
-    - name: "ABC"
-      ansible.builtin.debug:
-        msg: "Hello"
+    - name: Ping
+      ansible.builtin.ping:
 
 - import_playbook: ../../main.yaml
