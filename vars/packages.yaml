@@ -19,4 +19,5 @@ common:
 uncommon:
   arch:
     - exa
+    - pacman-contrib
   ubuntu: []
