@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: "ABC"
+      ansible.builtin.debug:
+        msg: "Hello"
+
+- import_playbook: ../../main.yaml

@@ -1,0 +1,28 @@
+---
+
+- name: Arch
+  block:
+    - name: Update cache
+      community.general.pacman:
+        update_cache: yes
+
+    - name: Install Arch packages
+      community.general.pacman:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ common | union(uncommon.arch) }}"
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Ubuntu
+  block:
+    - name: Update cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 600
+
+    - name: Install Ubuntu packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ common | union(uncommon.ubuntu) }}"
+  when: ansible_facts['distribution'] == "Ubuntu"

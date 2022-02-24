@@ -1,0 +1,12 @@
+---
+
+- name: Pets
+  hosts: all
+
+  vars_files:
+    - vars/packages.yaml
+
+  tasks:
+    - name: Install common packages
+      ansible.builtin.import_tasks: tasks/common_packages.yaml
+      tags: packages

@@ -1,0 +1,22 @@
+---
+
+# Packages with a common name between distributions
+common:
+  - fzf
+  - httpie
+  - git
+  - htop
+  - pass
+  - rsync
+  - stow
+  - tmux
+  - wget
+  - vim
+  - zsh
+
+# Packages whose name differs between distributions, is only present on certain
+# distributions, or only desired on some distributions
+uncommon:
+  arch:
+    - exa
+  ubuntu: []
