@@ -48,3 +48,11 @@
   kewlfft.aur.aur:
     name: "{{ aur_packages }}"
     state: present
+
+- name: Add user to informant group
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: informant
+    append: yes
+  when: ansible_user is defined
