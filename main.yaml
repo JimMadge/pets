@@ -6,6 +6,9 @@
   vars_files:
     - vars/packages.yaml
 
+  collections:
+    - kewlftt.aur
+
   tasks:
     - name: Install common packages
       ansible.builtin.import_tasks: tasks/common_packages.yaml

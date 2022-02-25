@@ -7,14 +7,23 @@ platforms:
   - name: arch
     image: rndmh3ro/docker-arch-ansible:latest
     pre_build_image: true
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
   - name: ubuntu_focal
     image: rndmh3ro/docker-ubuntu2004-ansible:latest
     pre_build_image: true
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
 provisioner:
   name: ansible
 verifier:
   name: ansible
 lint: |
   set -e
+  ansible-galaxy install -r requirements.yaml
   yamllint ./molecule ./tasks ./vars ./main.yaml
   ansible-lint

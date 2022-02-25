@@ -21,3 +21,7 @@ uncommon:
     - exa
     - pacman-contrib
   ubuntu: []
+
+# AUR packages
+aur_packages:
+  - informant
