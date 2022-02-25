@@ -4,3 +4,4 @@
 
   tasks:
     - include_tasks: ../../tasks/update_package_cache.yaml
+    - include_tasks: ../../tasks/upgrade_packages.yaml
