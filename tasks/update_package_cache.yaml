@@ -1,11 +1,13 @@
 ---
 
 - name: Update Arch cache
+  become: yes
   community.general.pacman:
     update_cache: yes
   when: ansible_facts['distribution'] == "Archlinux"
 
 - name: Update Ubuntu cache
+  become: yes
   ansible.builtin.apt:
     update_cache: yes
     cache_valid_time: 600

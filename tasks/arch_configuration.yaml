@@ -1,6 +1,7 @@
 ---
 
 - name: Install pacman hooks
+  become: yes
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/pacmand.d/hooks/

@@ -1,12 +1,14 @@
 ---
 
 - name: Install Arch packages
+  become: yes
   community.general.pacman:
     name: "{{ common | union(uncommon.arch) }}"
     state: present
   when: ansible_facts['distribution'] == "Archlinux"
 
 - name: Install Ubuntu packages
+  become: yes
   ansible.builtin.apt:
     name: "{{ common | union(uncommon.ubuntu) }}"
     state: present
