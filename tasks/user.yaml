@@ -1,0 +1,10 @@
+---
+
+- name: Create user
+  become: yes
+  ansible.builtin.user:
+    name: "{{ user.username }}"
+    password: "{{ user.password }}"
+    shell: "{{ user.shell }}"
+    groups: "{{ user.groups }}"
+    append: yes

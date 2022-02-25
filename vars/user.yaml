@@ -1,0 +1,8 @@
+---
+
+user:
+  username: jim
+  ssh_keys: https://github.com/jimmadge.keys
+  password: "{{ lookup('env', 'PETS_PASSWORD') | passwordhash('sha512') }}"
+  groups: wheel
+  shell: /bin/zsh
