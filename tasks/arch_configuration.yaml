@@ -56,3 +56,10 @@
     groups: informant
     append: yes
   when: ansible_user is defined
+
+- name: Enable periodic trim for SSDs
+  become: yes
+  ansible.builtin.systemd:
+    name: fstrim.timer
+    # state: started  # Should be idempotent
+    enabled: yes
