@@ -20,6 +20,7 @@ uncommon:
   arch:
     - exa
     - pacman-contrib
+    - reflector
   ubuntu: []
 
 # AUR packages
