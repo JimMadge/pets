@@ -23,6 +23,7 @@ uncommon:
     - man-pages
     - pacman-contrib
     - reflector
+    - sudo
   ubuntu: []
 
 # AUR packages
