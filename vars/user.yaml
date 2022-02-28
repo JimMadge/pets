@@ -2,7 +2,7 @@
 
 user:
   username: jim
-  ssh_keys: https://github.com/jimmadge.keys
-  password: "{{ lookup('env', 'PETS_PASSWORD') | passwordhash('sha512') }}"
-  groups: wheel
+  github_ssh_keys: https://github.com/jimmadge.keys
+  password: "{{ lookup('env', 'PETS_PASSWORD') | password_hash('sha512') }}"
+  groups: "{{ 'sudo' if ansible_facts['distribution'] == 'Ubuntu' else 'wheel' }}"
   shell: /bin/zsh

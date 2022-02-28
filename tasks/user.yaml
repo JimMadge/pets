@@ -8,3 +8,9 @@
     shell: "{{ user.shell }}"
     groups: "{{ user.groups }}"
     append: yes
+
+- name: Fetch authorised keys
+  become: yes
+  ansible.posix.authorized_key:
+    user: "{{ user.username }}"
+    key: "{{ user.github_ssh_keys }}"

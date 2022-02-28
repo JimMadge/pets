@@ -52,7 +52,7 @@
 - name: Add user to informant group
   become: yes
   ansible.builtin.user:
-    name: "{{ ansible_user }}"
+    name: "{{ user.username }}"
     groups: informant
     append: yes
   when: ansible_user is defined

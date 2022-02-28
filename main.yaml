@@ -5,6 +5,7 @@
 
   vars_files:
     - vars/packages.yaml
+    - vars/user.yaml
 
   collections:
     - kewlftt.aur
@@ -13,6 +14,10 @@
     - name: Install common packages
       ansible.builtin.import_tasks: tasks/common_packages.yaml
       tags: packages
+
+    - name: Configure user
+      ansible.builtin.import_tasks: tasks/user.yaml
+      tags: user
 
     - name: Configure Arch
       ansible.builtin.import_tasks: tasks/arch_configuration.yaml
