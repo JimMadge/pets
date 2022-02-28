@@ -6,4 +6,7 @@
     - name: Ping
       ansible.builtin.ping:
 
-- import_playbook: ../../main.yaml
+- name: Include playbook
+  import_playbook: ../../main.yaml
+  vars:
+    user_password: "{{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
