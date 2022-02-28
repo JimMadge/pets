@@ -1,5 +1,15 @@
 ---
 
+- name: Allow users in wheel group to use sudo
+  become: yes
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/sudoers.d/10-wheel
+    line: '%wheel ALL=(ALL:ALL) ALL'
+    create: yes
+    validate: 'visudo -cf %s'
+    mode: 0440
+
 - name: Install pacman hooks
   become: yes
   ansible.builtin.copy:
