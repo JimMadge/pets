@@ -19,6 +19,8 @@ common:
 uncommon:
   arch:
     - exa
+    - man-db
+    - man-pages
     - pacman-contrib
     - reflector
   ubuntu: []
