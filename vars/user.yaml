@@ -6,3 +6,16 @@ user:
   password: "{{ lookup('env', 'PETS_PASSWORD') | password_hash('sha512') }}"
   groups: "{{ 'sudo' if ansible_facts['distribution'] == 'Ubuntu' else 'wheel' }}"
   shell: /bin/zsh
+
+dotfiles:
+  repo: https://github.com/JimMadge/dotfiles
+  branch: main
+  stow:
+    - package: vim
+      creates: .vimrc
+    - package: zsh
+      creates: .zshrc
+    - package: tmux
+      creates: .tmux.conf
+    - package: git
+      creates: .gitconfig

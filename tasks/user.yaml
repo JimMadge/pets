@@ -8,9 +8,35 @@
     shell: "{{ user.shell }}"
     groups: "{{ user.groups }}"
     append: yes
+  register: _user
 
 - name: Fetch authorised keys
   become: yes
   ansible.posix.authorized_key:
-    user: "{{ user.username }}"
+    user: "{{ _user.name }}"
     key: "{{ user.github_ssh_keys }}"
+
+- name: Fetch dotfiles
+  become: yes
+  ansible.builtin.git:
+    repo: "{{ dotfiles.repo }}"
+    dest: "{{ _user.home }}/.dotfiles"
+    version: "{{ dotfiles.branch }}"
+    recursive: no
+    update: no
+
+- name: Set permissions for dotfiles
+  become: yes
+  ansible.builtin.file:
+    path: "{{ _user.home }}/.dotfiles"
+    owner: "{{ _user.name }}"
+    group: "{{ _user.group }}"
+    recurse: yes
+
+- name: Stow dotfiles
+  become: yes
+  ansible.builtin.command: stow "{{ item.package }}"
+  args:
+    chdir: "{{ _user.home }}/.dotfiles"
+    creates: "{{ _user.home }}/{{ item.creates }}"
+  loop: "{{ dotfiles.stow }}"
