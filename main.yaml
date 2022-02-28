@@ -4,6 +4,7 @@
   hosts: all
 
   vars_files:
+    - vars/arch.yaml
     - vars/packages.yaml
     - vars/user.yaml
 

@@ -80,3 +80,27 @@
     name: reflector.timer
     state: started
     enabled: yes
+
+- name: Enable colour in pacman
+  become: yes
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/pacman.conf
+    insertafter: "^#Color"
+    line: "Color"
+
+- name: Enable parallel downloads in pacman
+  become: yes
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/pacman.conf
+    insertafter: "^#ParallelDownloads"
+    line: "ParallelDownloads = {{ pacman_parallel_downloads }}"
+
+- name: Enable ILoveCandy in pacman
+  become: yes
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/pacman.conf
+    insertafter: "^ParallelDownloads"
+    line: "ILoveCandy"
