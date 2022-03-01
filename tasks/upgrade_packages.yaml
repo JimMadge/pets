@@ -1,13 +1,11 @@
 ---
 
 - name: Upgrade Arch packages
-  become: yes
   community.general.pacman:
     upgrade: yes
   when: ansible_facts['distribution'] == "Archlinux"
 
 - name: Upgrade Ubuntu packages
-  become: yes
   ansible.builtin.apt:
     upgrade: yes
   when: ansible_facts['distribution'] == "Ubuntu"

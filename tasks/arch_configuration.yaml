@@ -1,7 +1,6 @@
 ---
 
 - name: Allow users in wheel group to use sudo
-  become: yes
   ansible.builtin.lineinfile:
     state: present
     path: /etc/sudoers.d/10-wheel
@@ -11,7 +10,6 @@
     mode: 0440
 
 - name: Install pacman hooks
-  become: yes
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/pacmand.d/hooks/
@@ -21,7 +19,6 @@
   with_fileglob: "files/arch/etc/pacman.d/hooks/*.hook"
 
 - name: Create aur_builder user
-  become: yes
   ansible.builtin.user:
     state: present
     name: aur_builder
@@ -29,7 +26,6 @@
     group: wheel
 
 - name: Allow aur_builder run sudo pacman without a password
-  become: yes
   ansible.builtin.lineinfile:
     state: present
     path: /etc/sudoers.d/11-install-aur_builder
@@ -39,28 +35,24 @@
     mode: 0440
 
 - name: Install base-devel group
-  become: yes
   community.general.pacman:
     name: base-devel
     state: present
     extra_args: "--needed"
 
 - name: Install paru
-  become: yes
   become_user: aur_builder
   kewlfft.aur.aur:
     name: paru-bin
     state: present
 
 - name: Install AUR packages
-  become: yes
   become_user: aur_builder
   kewlfft.aur.aur:
     name: "{{ aur_packages }}"
     state: present
 
 - name: Add user to informant group
-  become: yes
   ansible.builtin.user:
     name: "{{ user.username }}"
     groups: informant
@@ -68,21 +60,18 @@
   when: ansible_user is defined
 
 - name: Enable periodic trim for SSDs
-  become: yes
   ansible.builtin.systemd:
     name: fstrim.timer
     state: started
     enabled: yes
 
 - name: Enable reflector service
-  become: yes
   ansible.builtin.systemd:
     name: reflector.timer
     state: started
     enabled: yes
 
 - name: Enable colour in pacman
-  become: yes
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
@@ -90,7 +79,6 @@
     line: "Color"
 
 - name: Enable parallel downloads in pacman
-  become: yes
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
@@ -98,7 +86,6 @@
     line: "ParallelDownloads = {{ pacman_parallel_downloads }}"
 
 - name: Enable ILoveCandy in pacman
-  become: yes
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
