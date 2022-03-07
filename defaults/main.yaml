@@ -1,5 +1,7 @@
 ---
 
+pacman_parallel_downloads: 5
+
 user:
   username: jim
   github_ssh_keys: https://github.com/jimmadge.keys

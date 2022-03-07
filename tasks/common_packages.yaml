@@ -1,5 +1,8 @@
 ---
 
+- name: Include common package variables
+  ansible.builtin.include_vars: packages.yaml
+
 - name: Install Arch packages
   community.general.pacman:
     name: "{{ common | union(uncommon.arch) }}"
