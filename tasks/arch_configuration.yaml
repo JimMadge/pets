@@ -74,19 +74,19 @@
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
-    insertafter: "^#Color"
+    insertafter: "^# Misc options"
     line: "Color"
 
 - name: Enable parallel downloads in pacman
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
-    insertafter: "^#ParallelDownloads"
+    insertafter: "^# Misc options"
     line: "ParallelDownloads = {{ pacman_parallel_downloads }}"
 
 - name: Enable ILoveCandy in pacman
   ansible.builtin.lineinfile:
     state: present
     path: /etc/pacman.conf
-    insertafter: "^ParallelDownloads"
+    insertafter: "^# Misc options"
     line: "ILoveCandy"
