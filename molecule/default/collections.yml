@@ -1,1 +1,4 @@
-../../requirements.yaml
+---
+
+collections:
+  - name: kewlfft.aur
