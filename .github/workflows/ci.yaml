@@ -19,7 +19,7 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible ansible-lint yamllint
       - name: Install Ansible dependencies
-        run: ansible-galaxy install -r requirements.yaml
+        run: ansible-galaxy install -r molecule/default/collections.yml
       - name: Lint YAML
         run: yamllint -f github ./molecule ./tasks ./vars
       - name: Lint Ansible
