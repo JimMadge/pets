@@ -57,7 +57,6 @@
     name: "{{ user.username }}"
     groups: informant
     append: yes
-  when: ansible_user is defined
 
 - name: Enable periodic trim for SSDs
   ansible.builtin.systemd:
