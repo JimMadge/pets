@@ -1,5 +1,7 @@
 ---
 
+graphical: no
+
 pacman_parallel_downloads: 5
 
 user:

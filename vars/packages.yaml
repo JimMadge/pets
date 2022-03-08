@@ -11,7 +11,6 @@ common:
   - stow
   - tmux
   - wget
-  - vim
   - zsh
 
 # Packages whose name differs between distributions, is only present on certain
@@ -24,7 +23,9 @@ uncommon:
     - pacman-contrib
     - reflector
     - sudo
-  ubuntu: []
+    - "{{ 'gvim' if graphical else 'vim' }}"
+  ubuntu:
+    - vim
 
 # AUR packages
 aur_packages:
