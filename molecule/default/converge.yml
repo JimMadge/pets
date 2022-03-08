@@ -9,4 +9,4 @@
   tasks:
     - name: Include pets
       ansible.builtin.include_role:
-        name: pets_playbook
+        name: pets
