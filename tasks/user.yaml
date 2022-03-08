@@ -15,7 +15,7 @@
     key: "{{ user.github_ssh_keys }}"
   when: user.github_ssh_keys is defined
 
-- Install dotfiles:
+- name: Install dotfiles
   block:
     - name: Fetch dotfiles
       ansible.builtin.git:
