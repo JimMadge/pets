@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  become: yes
 
   vars:
     user_password: "{{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
