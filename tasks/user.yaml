@@ -3,35 +3,39 @@
 - name: Create user
   ansible.builtin.user:
     name: "{{ user.username }}"
-    password: "{{ user_password }}"
-    shell: "{{ user.shell }}"
-    groups: "{{ user.groups }}"
-    append: yes
+    password: "{{ user_password | default(omit) }}"
+    shell: "{{ user.shell | default(omit) }}"
+    groups: "{{ user.groups | default(omit) }}"
+    append: "{{ 'yes' if user.groups is defined }}"
   register: _user
 
 - name: Fetch authorised keys
   ansible.posix.authorized_key:
     user: "{{ _user.name }}"
     key: "{{ user.github_ssh_keys }}"
+  when: user.github_ssh_keys is defined
 
-- name: Fetch dotfiles
-  ansible.builtin.git:
-    repo: "{{ dotfiles.repo }}"
-    dest: "{{ _user.home }}/.dotfiles"
-    version: "{{ dotfiles.branch }}"
-    recursive: no
-    update: no
+- name: Install dotfiles
+  block:
+    - name: Fetch dotfiles
+      ansible.builtin.git:
+        repo: "{{ dotfiles.repo }}"
+        dest: "{{ _user.home }}/.dotfiles"
+        version: "{{ dotfiles.branch }}"
+        recursive: no
+        update: no
 
-- name: Set permissions for dotfiles
-  ansible.builtin.file:
-    path: "{{ _user.home }}/.dotfiles"
-    owner: "{{ _user.name }}"
-    group: "{{ _user.group }}"
-    recurse: yes
+    - name: Set permissions for dotfiles
+      ansible.builtin.file:
+        path: "{{ _user.home }}/.dotfiles"
+        owner: "{{ _user.name }}"
+        group: "{{ _user.group }}"
+        recurse: yes
 
-- name: Stow dotfiles
-  ansible.builtin.command: stow "{{ item.package }}"
-  args:
-    chdir: "{{ _user.home }}/.dotfiles"
-    creates: "{{ _user.home }}/{{ item.creates }}"
-  loop: "{{ dotfiles.stow }}"
+    - name: Stow dotfiles
+      ansible.builtin.command: stow "{{ item.package }}"
+      args:
+        chdir: "{{ _user.home }}/.dotfiles"
+        creates: "{{ _user.home }}/{{ item.creates }}"
+      loop: "{{ dotfiles.stow }}"
+  when: dotfiles is defined

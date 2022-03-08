@@ -1,12 +1,12 @@
 ---
 - name: Converge
   hosts: all
+  become: yes
 
-  tasks:
-    - name: Ping
-      ansible.builtin.ping:
-
-- name: Include playbook
-  import_playbook: ../../main.yaml
   vars:
     user_password: "{{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
+
+  tasks:
+    - name: Include pets
+      ansible.builtin.include_role:
+        name: pets

@@ -1,13 +1,12 @@
 ---
 
+pacman_parallel_downloads: 5
+
 user:
   username: jim
   github_ssh_keys: https://github.com/jimmadge.keys
   groups: "{{ 'sudo' if ansible_facts['distribution'] == 'Ubuntu' else 'wheel' }}"
   shell: /bin/zsh
-
-# https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
-# user_password: "{{ '' | password_hash('sha512') }}"
 
 dotfiles:
   repo: https://github.com/JimMadge/dotfiles
