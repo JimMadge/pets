@@ -6,7 +6,7 @@
     password: "{{ user_password | default(omit) }}"
     shell: "{{ user.shell | default(omit) }}"
     groups: "{{ user.groups | default(omit) }}"
-    append: "{{ yes if user.groups is defined }}"
+    append: "{{ 'yes' if user.groups is defined else omit }}"
   register: _user
 
 - name: Fetch authorised keys
