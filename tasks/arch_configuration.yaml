@@ -1,5 +1,8 @@
 ---
 
+- name: Include common package variables
+  ansible.builtin.include_vars: aur.yaml
+
 - name: Allow users in wheel group to use sudo
   ansible.builtin.lineinfile:
     state: present

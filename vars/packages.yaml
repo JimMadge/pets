@@ -26,7 +26,3 @@ uncommon:
     - "{{ 'gvim' if graphical else 'vim' }}"
   ubuntu:
     - vim
-
-# AUR packages
-aur_packages:
-  - informant
