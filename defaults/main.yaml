@@ -22,3 +22,5 @@ dotfiles:
       creates: .tmux.conf
     - package: git
       creates: .gitconfig
+
+makepkg_jobs: 4

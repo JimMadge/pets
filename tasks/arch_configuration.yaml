@@ -21,6 +21,20 @@
     mode: 0644
   with_fileglob: "files/arch/etc/pacman.d/hooks/*.hook"
 
+- name: Set make jobs for makepkg
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/makepkg.conf
+    insertafter: "^#MAKEFLAGS="
+    line: "MAKEFLAGS=\"-j{{ makepkg_jobs }}\""
+
+- name: Set makepkg build directory to tmpfs
+  ansible.builtin.lineinfile:
+    state: present
+    path: /etc/makepkg.conf
+    insertafter: "^#BUILDDIR="
+    line: BUILDDIR=/tmp/makepkg
+
 - name: Create aur_builder user
   ansible.builtin.user:
     state: present
@@ -84,7 +98,7 @@
     state: present
     path: /etc/pacman.conf
     insertafter: "^# Misc options"
-    line: "Color"
+    line: Color
 
 - name: Enable parallel downloads in pacman
   ansible.builtin.lineinfile:
@@ -98,4 +112,4 @@
     state: present
     path: /etc/pacman.conf
     insertafter: "^# Misc options"
-    line: "ILoveCandy"
+    line: ILoveCandy
