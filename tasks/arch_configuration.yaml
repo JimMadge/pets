@@ -73,6 +73,12 @@
     state: started
     enabled: yes
 
+- name: Enable systemd-oomd
+  ansible.builtin.systemd:
+    name: systemd-oomd.service
+    state: started
+    enabled: yes
+
 - name: Enable colour in pacman
   ansible.builtin.lineinfile:
     state: present
