@@ -21,6 +21,6 @@ jobs:
       - name: Install Ansible dependencies
         run: ansible-galaxy install -r molecule/default/collections.yml
       - name: Lint YAML
-        run: yamllint -f github ./molecule ./tasks ./vars
+        run: yamllint -f github ./defaults ./files ./meta ./molecule ./tasks ./vars
       - name: Lint Ansible
-        run: ansible-lint
+        run: ansible-lint --exclude ./molecule --exclude .github
