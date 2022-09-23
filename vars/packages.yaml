@@ -2,11 +2,13 @@
 
 # Packages with a common name between distributions
 common:
+  - bat
   - fzf
   - httpie
   - git
   - htop
   - pass
+  - ripgrep
   - rsync
   - stow
   - tmux
@@ -17,7 +19,9 @@ common:
 # distributions, or only desired on some distributions
 uncommon:
   arch:
+    - dust
     - exa
+    - fd
     - man-db
     - man-pages
     - pacman-contrib
@@ -25,4 +29,5 @@ uncommon:
     - sudo
     - "{{ 'gvim' if graphical else 'vim' }}"
   ubuntu:
+    - fd-find
     - vim
