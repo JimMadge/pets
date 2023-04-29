@@ -2,7 +2,7 @@
 
 graphical: no
 
-pacman_parallel_downloads: 5
+pacman_parallel_downloads: 12
 
 user:
   username: jim
