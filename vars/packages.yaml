@@ -27,6 +27,7 @@ uncommon:
     - pacman-contrib
     - reflector
     - sudo
+    - tealdeer
     - "{{ 'gvim' if graphical else 'vim' }}"
   ubuntu:
     - fd-find
