@@ -16,6 +16,7 @@
   when: user.github_ssh_keys is defined
 
 - name: Install dotfiles
+  when: dotfiles is defined
   block:
     - name: Fetch dotfiles
       ansible.builtin.git:
@@ -38,4 +39,3 @@
         chdir: "{{ _user.home }}/.dotfiles"
         creates: "{{ _user.home }}/{{ item.creates }}"
       loop: "{{ dotfiles.stow }}"
-  when: dotfiles is defined

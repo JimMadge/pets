@@ -3,6 +3,7 @@
 # Packages with a common name between distributions
 common:
   - bat
+  - exa
   - fzf
   - httpie
   - git
@@ -20,7 +21,6 @@ common:
 uncommon:
   arch:
     - dust
-    - exa
     - fd
     - man-db
     - man-pages
