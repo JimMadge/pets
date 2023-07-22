@@ -22,4 +22,4 @@ jobs:
           python3 -m pip install ansible-lint
 
       - name: Lint Ansible
-        run: ansible-lint --exclude ./molecule --exclude ./.github
+        run: ansible-lint --exclude molecule --exclude .github
