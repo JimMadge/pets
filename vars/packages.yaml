@@ -3,7 +3,7 @@
 # Packages with a common name between distributions
 common:
   - bat
-  - exa
+  - eza
   - fzf
   - httpie
   - git
