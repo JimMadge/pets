@@ -21,6 +21,7 @@ common:
 # distributions, or only desired on some distributions
 uncommon:
   arch:
+    - bottom
     - dust
     - fd
     - man-db
@@ -30,5 +31,6 @@ uncommon:
     - sudo
     - "{{ 'gvim' if graphical else 'vim' }}"
   ubuntu:
+    - btm
     - fd-find
     - vim
